@@ -1,10 +1,11 @@
 import './index.css'
 
 const DenominationItem = props => {
-  const {denominationDetails, updateBalance} = this.props
+  // FIX7: props in functional component should not be accessed with this
+  const {denominationDetails, updateBalance} = props
   const {value} = denominationDetails
-
-  onClickDenomination = () => {
+  // FIX8: Variable declaration should consist of keyword const
+  const onClickDenomination = () => {
     updateBalance(value)
   }
 
@@ -13,7 +14,8 @@ const DenominationItem = props => {
       <button
         type="button"
         className="denomination-button"
-        onClick={this.onClickDenomination}
+        // FIX9: Functions in functional components should not be accessed with this
+        onClick={onClickDenomination}
       >
         {value}
       </button>
@@ -22,3 +24,4 @@ const DenominationItem = props => {
 }
 
 export default DenominationItem
+
