@@ -1,20 +1,24 @@
-import component from 'react'
+// FIX2: The import statement for React Component class
+import {Component} from 'react'
 
 import DenominationItem from '../DenominationItem'
 
 import './index.css'
 
-const CashWithdrawal extends Component {
+// FIX3: class should be declared with keyword class
+class CashWithdrawal extends Component {
   state = {
     balance: 2000,
   }
 
   updateBalance = value => {
-    this.setstate(prevState => ({balance: prevState.balance - value}))
+    // FIX4: setState spelling should be as mentioned below
+    this.setState(prevState => ({balance: prevState.balance - value}))
   }
 
   render() {
-    const {denomination} = this.props
+    // FIX5: The prop name here is denominationsList
+    const {denominationsList} = this.props
     const {balance} = this.state
     const name = 'Sarah Williams'
     const initial = name.slice(0, 1)
@@ -39,7 +43,8 @@ const CashWithdrawal extends Component {
           <p className="withdraw">Withdraw</p>
           <p className="choose-sum">CHOOSE SUM (IN RUPEES)</p>
           <ul className="denominations-list">
-            {denomination.map(eachDenomination => (
+            {/* FIX6: The prop name here is denominationsList */}
+            {denominationsList.map(eachDenomination => (
               <DenominationItem
                 key={eachDenomination.id}
                 denominationDetails={eachDenomination}
@@ -54,3 +59,4 @@ const CashWithdrawal extends Component {
 }
 
 export default CashWithdrawal
+
